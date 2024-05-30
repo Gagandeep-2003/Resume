@@ -3,17 +3,43 @@ body {
     font-size: 12px;
     max-width: 960px;
     margin: auto;
+    background-color: #f4f4f9;
+    color: #333;
+    animation: fadeIn 1s ease-in;
 }
+
 h1 {
     font-size: 3em;
     letter-spacing: .6em;
     padding-top: 1em;
     padding-bottom: 1em;
+    color: #222;
 }
 
 h2 {
     font-size: 1.5em;
     padding-bottom: 1em;
+    color: #444;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #f39c12;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
+    border-radius: 2px;
+    animation: slideIn 1s ease-in-out;
+    transition: all 0.3s ease;
+}
+
+h2:hover::after {
+    bottom: 12px;
+    height: 5px;
 }
 
 h3 {
@@ -21,11 +47,12 @@ h3 {
     padding-bottom: 1em;
 }
 
-main { 
+main {
     display: grid;
     grid-template-columns: 40% 60%;
     margin-top: 3em;
 }
+
 header {
     text-align: center;
     margin: auto 2em;
@@ -33,14 +60,35 @@ header {
 
 section {
     margin: auto 1em 4em 2em;
+    animation: fadeIn 2s ease-in-out;
 }
 
 i {
     margin-right: .5em;
+    color: #f39c12;
+    transition: all 0.7s ease-in-out;
 }
 
 p {
-    margin: .2em auto
+    margin: .2em auto;
+}
+
+a {
+    color: #f39c12;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #e67e22;
+}
+
+a:active, a:focus {
+    color: #d35400;
+}
+
+p:hover i {
+    text-shadow: 0 0 5px #f39c12, 0 0 10px #f39c12, 0 0 15px #f39c12;
 }
 
 hr {
@@ -53,6 +101,64 @@ h1, h2, h3 {
     font-weight: 100;
     margin-bottom: 0;
 }
+
 #mainLeft {
     border-right: 1px solid lightgray;
 }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li::before {
+    content: '\2022';
+    color: #f39c12;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    transition: width 0.3s ease;
+}
+
+ul li:hover::before {
+    width: 1.5em;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { width: 0; }
+    to { width: 50px; }
+}
+
+
+@media (max-width: 768px) {
+    body {
+        font-size: 10px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        letter-spacing: .4em;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        margin-top: 2rem;
+    }
+
+    #mainLeft {
+        border-right: none;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 2em;
+        margin-bottom: 2em;
+    }
+
+    section {
+        margin: auto 1em 2em 1em;
+    }
+}
+
